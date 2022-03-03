@@ -1,0 +1,30 @@
+<h1>Books</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>リーダブルコード</td>
+      <td>より良いコードを書くためのシンプルで実践的なテクニック</td>
+      <%= link_to "Show", book_path(book.id) %>
+    </tr>
+  </tbody>
+</table>
+
+<h2>New book</h2>
+
+<%= form_with model: Book.new do |f| %>
+  <label for="book_title">Title</label>
+  <%= f.text_field :title %>
+
+  <label for="book_body">Body</label>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Create Book' %>
+<% end %>
