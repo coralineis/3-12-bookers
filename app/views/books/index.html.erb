@@ -1,22 +1,34 @@
 <h1>Books</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+    <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><% link_to "Show", book_path(book.id) %></td>
-        <td><% link_to "Edit", book_path(book.id), method: :patch %></td>
-        <td><% link_to "Destroy", book_path(book.id) %></td>
+        <td><%= book.title %></td>
+        <td><%= book.body %></td>
+        <td><%= link_to "Show" %></td>
+        <td><%= link_to "Edit" %></td>
+        <td><%= link_to "Destroy" %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
 <h2>New book</h2>
+
+<%= form_with model: @book, url: '/books', method: :post do |f| %>
+  <label for="book_title">Title</label><br>
+  <%= f.text_field :title %><br>
+
+  <label for="book_body">Body</label><br>
+  <%= f.text_area :body %><br>
+
+  <%= f.submit 'Create Book' %>
+<% end %>
