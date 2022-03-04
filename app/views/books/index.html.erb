@@ -23,6 +23,8 @@
 
 <h2>New book</h2>
 
+<% if @book.errors.an
+
 <%= form_with model: @book, url: '/books', method: :post do |f| %>
 
   <label for="book_title">Title</label><br>
