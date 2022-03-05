@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <div class="notifications">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: key) %>
+      <% end %>
+    </div>
+
     <%= yield %>
   </body>
 </html>
