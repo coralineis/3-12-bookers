@@ -1,6 +1,17 @@
+<%= flash[:notice] %>
+
 <h1>Editing Book</h1>
 
-<%= form_with model: @book, url:update_book_path(@book.id), method: :patch do |f| %>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @book, url: update_book_path(@book.id), method: :patch do |f| %>
 
   <label for="book-title">Title</label><br>
   <%= f.text_field :title %><br>
@@ -8,7 +19,9 @@
   <label for="book-body">Body</label><br>
   <%= f.text_area :body %><br>
 
-  <%= link_to "Show", "/books/:id" %> |
-  <%= link_to "Back", "/books" %>
+  <%= f.submit 'Update Book' %><br>
+
+  <%= link_to "Show", book_path(book.id) %> |
+  <%= link_to "Back", books_path %>
 
 <% end %>
